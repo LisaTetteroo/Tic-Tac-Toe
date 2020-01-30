@@ -1,12 +1,14 @@
 /**
- * resposible for showing screen to user
+ * resposible for showing screen(items) to user
  */
 
 public class Game {
-    public void refreshScreen() {
+    public static void refreshScreen() {
         header();
+        Board.getGameBoard();
+        Players.askMove();
     }
-    public void header() {
+    public static void header() {
         System.out.println("Boter-kaas-eieren");
         System.out.println("Om een vak op het bord te kiezen wordt om een getal tussen 1 en 9 gevraagd.");
         System.out.println("Dit getal komt overeen met een vak op het bord zoals aangegeven in het schema hieronder.");
