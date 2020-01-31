@@ -1,30 +1,53 @@
 import java.util.Scanner;
 
 public class Players {
-    static int positionOnBoard;
-    static Scanner input = new Scanner(System.in);
+    static String inputFromPlayerString;
+    static int inputFromPlayerInt;
+    static int move;
+    static Scanner input = new Scanner(System.in);   
 
-    public static int askMove() {
-        System.out.println("waar wil je jouw %s zetten? Type 1-9:");
-        move = input.nextInt();
-        while (move)
-        
-        positionOnBoard = move
-        return positionOnBoard;
+    public static int askMove(String playerSymbol) {
+        System.out.println("waar wil je jouw " + playerSymbol + " zetten? Type geheel getal van 1 tot 9:");
+        inputFromPlayerString = input.next();
+        convertInputPlayerToInt(playerSymbol);
+
+        if (inputFromPlayerIsValid()) {
+            move = inputFromPlayerInt;
+        } else {
+            askMove(playerSymbol);
+        }    
+        return move;
     }
 
-    // method to check if input is an integer
-    /*
-    Returns true if s is a number else false 
-    static boolean isNumber(String s) 
-    { 
-        for (int i = 0; i < s.length(); i++) 
-        if (Character.isDigit(s.charAt(i))  
-            == false) 
-            return false; 
-  
-        return true; 
-    } 
-  
-    */
+    public static int convertInputPlayerToInt(String playerSymbol) {
+        if (inputFromPlayerIsInt() == true) {
+            inputFromPlayerInt = Integer.parseInt(inputFromPlayerString);  
+        } else {
+            System.out.println("Invoer is onjuist, kies een geheel getal tussen 1 en 9:");
+            askMove(playerSymbol);
+        }
+        return inputFromPlayerInt; 
+    }
+    
+    public static boolean inputFromPlayerIsInt() {
+        boolean isInt = false;
+        for (int i = 0; i < inputFromPlayerString.length(); i++) {
+            if (Character.isDigit(inputFromPlayerString.charAt(i)) == true) {
+                isInt = true;
+            } else {
+                isInt = false;
+                break;
+            }
+        }
+        return isInt;
+    }
+
+    public static boolean inputFromPlayerIsValid() {
+        if (inputFromPlayerInt < 1 || inputFromPlayerInt > 9) {
+            System.out.println("Invoer is onjuist, kies een geheel getal tussen 1 en 9:");    
+            return false;
+        } else {
+            return true;
+        }
+    }
 }

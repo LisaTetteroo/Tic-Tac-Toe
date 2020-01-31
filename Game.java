@@ -6,7 +6,7 @@ public class Game {
     public static void refreshScreen() {
         header();
         Board.getGameBoard();
-        Players.askMove();
+        Players.askMove("X");
     }
     public static void header() {
         System.out.println("Boter-kaas-eieren");
