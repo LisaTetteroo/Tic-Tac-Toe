@@ -1,14 +1,6 @@
-/*
-* Responisble for keeping track of the state of the board
-*/
-
 public class Board {
-    // state
     private static String [] gameBoard =  {" "," "," "," "," "," "," "," "," "," "};
 
-    //contructor voor nu niet nodig
-
-    // behaviour
     public static void getGameBoard() {
         System.out.println("     " + gameBoard[7] + " | " + gameBoard[8] + " | " + gameBoard[9]);
         System.out.println("     -----------");
@@ -26,7 +18,11 @@ public class Board {
         }
     }
 
-    // public static boolean isWinner() 
+    public static boolean isWinner() {
+        boolean isWinner = false;
+        
+        return isWinner
+    }
 
 
 
