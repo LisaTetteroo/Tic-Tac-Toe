@@ -19,27 +19,38 @@ public class Board {
     }
 
     public static boolean isWinner(String playerSymbol) {
-        boolean isWinner = false;
+        boolean Win = false;
         int [] rows = {1, 4, 7}; 
         for (int row : rows) {
             if (gameBoard[row] == playerSymbol && gameBoard[row + 1] == playerSymbol && gameBoard[row + 2] == playerSymbol) {
-                isWinner = true;
+                Win = true;
             }
         }
 
         for (int i = 1; i <= 3; i++) {
             if (gameBoard[i] == playerSymbol && gameBoard[i + 3] == playerSymbol && gameBoard[i + 6] == playerSymbol) {
-                isWinner = true;
-            } 
+                Win = true;
+            }
         }
 
-        if ((gameBoard[1] == playerSymbol && gameBoard[5] == playerSymbol && gameBoard[9] == playerSymbol) 
+        if ((gameBoard[1] == playerSymbol && gameBoard[5] == playerSymbol && gameBoard[9] == playerSymbol)
                 || (gameBoard[3] == playerSymbol && gameBoard[5] == playerSymbol && gameBoard[7] == playerSymbol)) {
-            isWinner = true;
+            Win = true;
         }
-        return isWinner;
+        return Win;
     }
 
-
+    public static boolean isFull() {
+        boolean full = true;
+        int i = 1;
+            while (full == true &&  i <=9) {
+                if (gameBoard[i] == " ") {
+                    full = false;
+                } else {
+                    i++;
+                }
+            }
+        return full;
+    }
 
 }    

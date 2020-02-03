@@ -4,11 +4,12 @@
 
 public class Game {
     private static String playerSymbol;
+    private static String gameState;
 
     public static void refreshScreen() {
         header();
         Board.getGameBoard();
-        playerSymbol = "X"
+        playerSymbol = "X";
 		int postionOnBoard = Players.askMove(playerSymbol);
     }
     public static void header() {
@@ -27,5 +28,18 @@ public class Game {
         System.out.println("=====================");
         System.out.println("");
     }    
+
+    public static String stateOfGame(String playerSymbol) {
+        if (Board.isWinner(playerSymbol) == true) {
+            System.out.println("Speler " + playerSymbol + " wint!");
+            gameState = "win";
+        } else if (Board.isFull() == true) {
+            System.out.println("Gelijkspel, het bord is vol");
+            gameState = "full";
+        } else {
+            gameState = "play";
+        }
+        return gameState;
+    }
 
 }
