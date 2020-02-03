@@ -12,7 +12,7 @@ public class Board {
     public static void setGameBoard(int positionOnBoard, String playerSymbol) { 
         if (gameBoard[positionOnBoard] != " ") {
             System.out.println("hier kan je jouw " + playerSymbol + " niet plaatsen, hier staat al wat.");
-            // Players.askMove(playerSymbol);
+            Players.askMove(playerSymbol);
         } else {
             gameBoard[positionOnBoard] = playerSymbol.toUpperCase();
         }
