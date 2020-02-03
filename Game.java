@@ -2,19 +2,37 @@
  * resposible for showing screen(items) to user
  */
 
+import java.io.IOException;
+
 public class Game {
     private static String playerSymbol;
-    private static String gameState;
+    private static int move;
 
-    public static void refreshScreen() {
+    public static void gameplay() throws IOException, InterruptedException {
+        refreshScreen();
+        while (true) {
+                        playerSymbol = "X";
+            move = Players.askMove(playerSymbol);
+            Board.setGameBoard(move, playerSymbol);
+            refreshScreen();
+            if (continueGame(playerSymbol) != true) {
+                break;
+            }
+            playerSymbol = "O";
+            move = Players.askMove(playerSymbol);
+            Board.setGameBoard(move, playerSymbol);
+            refreshScreen();
+            if (continueGame(playerSymbol) != true) {
+                break;
+            }
+        }
+        
+    }
+
+    public static void refreshScreen() throws IOException, InterruptedException {
+        clearScreen();
         header();
         Board.getGameBoard();
-<<<<<<< HEAD
-        Players.askMove("X");
-=======
-        playerSymbol = "X";
-		int postionOnBoard = Players.askMove(playerSymbol);
->>>>>>> boardsetup
     }
     public static void header() {
         System.out.println("Boter-kaas-eieren");
@@ -33,17 +51,20 @@ public class Game {
         System.out.println("");
     }    
 
-    public static String stateOfGame(String playerSymbol) {
+    public static Boolean continueGame(String playerSymbol) {
+        boolean gameCanContinue = false;
         if (Board.isWinner(playerSymbol) == true) {
             System.out.println("Speler " + playerSymbol + " wint!");
-            gameState = "win";
         } else if (Board.isFull() == true) {
             System.out.println("Gelijkspel, het bord is vol");
-            gameState = "full";
         } else {
-            gameState = "play";
+            gameCanContinue = true;
         }
-        return gameState;
+        return gameCanContinue;
+    }
+
+    public static void clearScreen() throws IOException, InterruptedException {
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 
 }

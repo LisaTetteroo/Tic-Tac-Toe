@@ -1,5 +1,6 @@
 public class Board {
     private static String [] gameBoard =  {" "," "," "," "," "," "," "," "," "," "};
+    // private static int move;
 
     public static void getGameBoard() {
         System.out.println("     " + gameBoard[7] + " | " + gameBoard[8] + " | " + gameBoard[9]);
@@ -9,13 +10,16 @@ public class Board {
         System.out.println("     " + gameBoard[1] + " | " + gameBoard[2] + " | " + gameBoard[3]);
     }
 
-    public static void setGameBoard(int positionOnBoard, String playerSymbol) { 
-        if (gameBoard[positionOnBoard] != " ") {
+    public static void setGameBoard(int move, String playerSymbol) { 
+        while (gameBoard[move] != " ") {
             System.out.println("hier kan je jouw " + playerSymbol + " niet plaatsen, hier staat al wat.");
-            Players.askMove(playerSymbol);
-        } else {
-            gameBoard[positionOnBoard] = playerSymbol.toUpperCase();
+            move = Players.askMove(playerSymbol);
+            if (gameBoard[move] == " ") {
+                break;
+            }
         }
+
+        gameBoard[move] = playerSymbol.toUpperCase();
     }
 
     public static boolean isWinner(String playerSymbol) {

@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
 // TODO: player class simplificeren: KISS
 
->>>>>>> boardsetup
 import java.util.Scanner;
 
 public class Players {
