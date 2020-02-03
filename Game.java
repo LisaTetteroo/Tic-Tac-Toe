@@ -3,10 +3,13 @@
  */
 
 public class Game {
+    private static String playerSymbol;
+
     public static void refreshScreen() {
         header();
         Board.getGameBoard();
-        Players.askMove();
+        playerSymbol = "X"
+		int postionOnBoard = Players.askMove(playerSymbol);
     }
     public static void header() {
         System.out.println("Boter-kaas-eieren");
