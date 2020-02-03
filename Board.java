@@ -1,14 +1,6 @@
-/*
-* Responisble for keeping track of the state of the board
-*/
-
 public class Board {
-    // state
     private static String [] gameBoard =  {" "," "," "," "," "," "," "," "," "," "};
 
-    //contructor voor nu niet nodig
-
-    // behaviour
     public static void getGameBoard() {
         System.out.println("     " + gameBoard[7] + " | " + gameBoard[8] + " | " + gameBoard[9]);
         System.out.println("     -----------");
@@ -26,8 +18,39 @@ public class Board {
         }
     }
 
-    // public static boolean isWinner() 
+    public static boolean isWinner(String playerSymbol) {
+        boolean Win = false;
+        int [] rows = {1, 4, 7}; 
+        for (int row : rows) {
+            if (gameBoard[row] == playerSymbol && gameBoard[row + 1] == playerSymbol && gameBoard[row + 2] == playerSymbol) {
+                Win = true;
+            }
+        }
 
+        for (int i = 1; i <= 3; i++) {
+            if (gameBoard[i] == playerSymbol && gameBoard[i + 3] == playerSymbol && gameBoard[i + 6] == playerSymbol) {
+                Win = true;
+            }
+        }
 
+        if ((gameBoard[1] == playerSymbol && gameBoard[5] == playerSymbol && gameBoard[9] == playerSymbol)
+                || (gameBoard[3] == playerSymbol && gameBoard[5] == playerSymbol && gameBoard[7] == playerSymbol)) {
+            Win = true;
+        }
+        return Win;
+    }
+
+    public static boolean isFull() {
+        boolean full = true;
+        int i = 1;
+            while (full == true &&  i <=9) {
+                if (gameBoard[i] == " ") {
+                    full = false;
+                } else {
+                    i++;
+                }
+            }
+        return full;
+    }
 
 }    
